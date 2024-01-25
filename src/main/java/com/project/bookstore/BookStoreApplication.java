@@ -16,7 +16,7 @@ public class BookStoreApplication {
                 = new AnnotationConfigApplicationContext(AppConfig.class);
 
         Book newBook = new Book();
-        newBook.setAuthor("King");
+        newBook.setAuthor("Stephen King");
         newBook.setTitle("It");
         newBook.setDescription("Scary and uncanny");
         newBook.setIsbn("123435");

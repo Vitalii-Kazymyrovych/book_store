@@ -21,7 +21,7 @@ public class AppConfig {
         return dataSource;
     }
 
-    @Bean(name="entityManagerFactory")
+    @Bean(name = "entityManagerFactory")
     public LocalSessionFactoryBean getSessionFactory() {
         LocalSessionFactoryBean localSessionFactoryBean
                 = new LocalSessionFactoryBean();
