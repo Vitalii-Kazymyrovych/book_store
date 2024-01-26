@@ -15,7 +15,7 @@ public class AppConfig {
     public DataSource getDataSource() {
         BasicDataSource dataSource = new BasicDataSource();
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/book_store?serverTimezone=UTC");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/bookstore?serverTimezone=UTC");
         dataSource.setUsername("root");
         dataSource.setPassword("1469");
         return dataSource;
