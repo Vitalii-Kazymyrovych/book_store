@@ -1,6 +1,7 @@
 package com.project.bookstore.controller;
 
-import com.project.bookstore.model.Book;
+import com.project.bookstore.dto.BookDto;
+import com.project.bookstore.dto.CreateBookRequestDto;
 import com.project.bookstore.service.BookService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -17,12 +18,12 @@ public class BookController {
     private final BookService bookService;
 
     @GetMapping
-    public List<Book> findAll() {
+    public List<BookDto> findAll() {
         return bookService.findAll();
     }
 
     @PostMapping
-    public Book save(@RequestBody Book book) {
-        return bookService.save(book);
+    public BookDto save(@RequestBody CreateBookRequestDto requestDto) {
+        return bookService.save(requestDto);
     }
 }

@@ -1,25 +1,29 @@
 package com.project.bookstore.service;
 
-import com.project.bookstore.model.Book;
+import com.project.bookstore.dto.BookDto;
+import com.project.bookstore.dto.CreateBookRequestDto;
+import com.project.bookstore.mapper.BookMapper;
 import com.project.bookstore.repository.BookRepository;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
 @Service
 public class BookServiceImpl implements BookService {
-    @Autowired
-    private BookRepository bookRepository;
+    private final BookRepository bookRepository;
+    private final BookMapper bookMapper;
 
     @Override
-    public Book save(Book book) {
-        return bookRepository.save(book);
+    public BookDto save(CreateBookRequestDto requestDto) {
+        return bookMapper.toDto(bookRepository
+                .save(bookMapper.toModel(requestDto)));
     }
 
     @Override
-    public List<Book> findAll() {
-        return bookRepository.findAll();
+    public List<BookDto> findAll() {
+        return bookRepository.findAll().stream()
+                .map(bookMapper::toDto)
+                .toList();
     }
 }
