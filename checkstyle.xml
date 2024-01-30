@@ -15,9 +15,6 @@
     Authors: Max Vetrenko, Ruslan Diachenko, Roman Ivanov.
  -->
 <module name="Checker">
-    <module name="SuppressionSingleFilter">
-        <property name="files" value="BookMapperImpl.java"/>
-    </module>
     <property name="charset" value="UTF-8"/>
 
     <property name="severity" value="error"/>

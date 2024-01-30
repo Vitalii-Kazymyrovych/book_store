@@ -117,6 +117,7 @@
 					<consoleOutput>true</consoleOutput>
 					<failsOnError>true</failsOnError>
 					<linkXRef>false</linkXRef>
+					<includes>com/project/bookstore</includes>
 				</configuration>
 			</plugin>
 		</plugins>
