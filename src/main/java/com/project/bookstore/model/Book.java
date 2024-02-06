@@ -24,7 +24,10 @@ public class Book {
     private String title;
     @Column(name = "author", nullable = false)
     private String author;
-    @Column(name = "isbn", nullable = false, unique = true)
+    @Column(name = "isbn",
+            nullable = false,
+            unique = true,
+            updatable = false)
     private String isbn;
     @Column(name = "price", nullable = false)
     private BigDecimal price;

@@ -122,6 +122,7 @@
 					<failsOnError>true</failsOnError>
 					<linkXRef>false</linkXRef>
 					<includes>src/main/java/com/project/bookstore</includes>
+					<includes>src/test/java</includes>
 				</configuration>
 			</plugin>
 			<plugin>
