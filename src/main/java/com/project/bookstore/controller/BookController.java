@@ -1,6 +1,7 @@
 package com.project.bookstore.controller;
 
 import com.project.bookstore.dto.BookDto;
+import com.project.bookstore.dto.BookSearchParameters;
 import com.project.bookstore.dto.CreateBookRequestDto;
 import com.project.bookstore.service.BookService;
 import java.util.List;
@@ -19,6 +20,11 @@ public class BookController {
         return bookService.findAll();
     }
 
+    @GetMapping("/search")
+    public List<BookDto> search(BookSearchParameters searchParameters) {
+        return bookService.search(searchParameters);
+    }
+
     @GetMapping("/{id}")
     public BookDto findById(@PathVariable Long id) {
         return bookService.findById(id);
@@ -29,6 +35,11 @@ public class BookController {
         return bookService.save(requestDto);
     }
 
+    @PostMapping("/all")
+    public List<BookDto> saveAll(@RequestBody CreateBookRequestDto[] requestDtos) {
+        return bookService.saveAll(requestDtos);
+    }
+
     @PutMapping("/{id}")
     public ResponseEntity<BookDto> updateById(@PathVariable Long id,
                                               @RequestBody CreateBookRequestDto requestDto) {
@@ -36,7 +47,7 @@ public class BookController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteById(@PathVariable Long id) {
         bookService.deleteById(id);
         return ResponseEntity.noContent().build();
     }
