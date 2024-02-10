@@ -1,14 +1,17 @@
 package com.project.bookstore.dto;
 
-import java.math.BigDecimal;
-import lombok.Data;
+import com.project.bookstore.validation.Isbn;
+import com.project.bookstore.validation.Url;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
 
-@Data
-public class CreateBookRequestDto {
-    private String title;
-    private String author;
-    private String isbn;
-    private BigDecimal price;
-    private String description;
-    private String coverImage;
+import java.math.BigDecimal;
+
+public record CreateBookRequestDto(
+        @NotNull String title,
+        @NotNull String author,
+        @Isbn String isbn,
+        @Min(0) @NotNull BigDecimal price,
+        @NotNull String description,
+        @Url String coverImage) {
 }
