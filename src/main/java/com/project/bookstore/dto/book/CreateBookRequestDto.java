@@ -1,4 +1,4 @@
-package com.project.bookstore.dto;
+package com.project.bookstore.dto.book;
 
 import com.project.bookstore.validation.Isbn;
 import com.project.bookstore.validation.Url;

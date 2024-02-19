@@ -1,8 +1,8 @@
 package com.project.bookstore.controller;
 
-import com.project.bookstore.dto.BookDto;
-import com.project.bookstore.dto.BookSearchParameters;
-import com.project.bookstore.dto.CreateBookRequestDto;
+import com.project.bookstore.dto.book.BookDto;
+import com.project.bookstore.dto.book.BookSearchParameters;
+import com.project.bookstore.dto.book.CreateBookRequestDto;
 import com.project.bookstore.service.BookService;
 import java.util.List;
 
