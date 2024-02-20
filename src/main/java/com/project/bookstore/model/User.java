@@ -2,8 +2,13 @@ package com.project.bookstore.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
-@Data
+@RequiredArgsConstructor
+@Setter
+@Getter
 @Entity
 @Table(name = "users")
 public class User {
@@ -18,6 +23,5 @@ public class User {
     private String firstName;
     @Column(name = "last_name", nullable = false)
     private String lastName;
-    @Column(name = "shipping_address")
     private String shippingAddress;
 }
