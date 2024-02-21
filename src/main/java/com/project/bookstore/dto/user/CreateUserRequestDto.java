@@ -1,14 +1,14 @@
 package com.project.bookstore.dto.user;
 
-import com.project.bookstore.validation.Email;
-import jakarta.validation.constraints.NotBlank;
-import org.hibernate.validator.constraints.Length;
+import com.project.bookstore.validation.FieldMatch;
+import jakarta.validation.constraints.*;
 
+@FieldMatch
 public record CreateUserRequestDto(
         @Email String email,
-        @NotBlank @Length(min = 8) String password,
-        @NotBlank @Length(min = 8) String repeatPassword,
-        @NotBlank String firstName,
-        @NotBlank String lastName,
+        @NotBlank @NotNull @Size(min = 8) String password,
+        @NotBlank @NotNull @Size(min = 8) String repeatPassword,
+        @NotBlank @NotNull String firstName,
+        @NotBlank @NotNull String lastName,
         String shippingAddress) {
 }

@@ -4,7 +4,6 @@ import com.project.bookstore.dto.user.CreateUserRequestDto;
 import com.project.bookstore.dto.user.UserDto;
 import com.project.bookstore.exception.RegistrationException;
 import com.project.bookstore.mapper.UserMapper;
-import com.project.bookstore.model.User;
 import com.project.bookstore.repository.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

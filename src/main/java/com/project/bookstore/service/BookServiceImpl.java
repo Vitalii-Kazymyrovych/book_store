@@ -7,11 +7,9 @@ import com.project.bookstore.exception.EntityNotFoundException;
 import com.project.bookstore.mapper.BookMapper;
 import com.project.bookstore.model.Book;
 import com.project.bookstore.repository.book.BookRepository;
-
+import com.project.bookstore.repository.book.BookSpecificationBuilder;
 import java.util.Arrays;
 import java.util.List;
-
-import com.project.bookstore.repository.book.BookSpecificationBuilder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;

@@ -2,17 +2,16 @@ package com.project.bookstore.validation;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
-
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-@Constraint(validatedBy = EmailValidator.class)
-@Target({ElementType.PARAMETER, ElementType.FIELD})
+@Constraint(validatedBy = FieldMatchValidator.class)
+@Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface Email {
-    String message() default "Invalid format email";
+public @interface FieldMatch {
+    String message() default "Passwords mismatch";
     Class<?>[] groups() default {};
     Class<? extends Payload> [] payload() default {};
 }
