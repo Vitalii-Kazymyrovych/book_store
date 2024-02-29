@@ -3,6 +3,8 @@ package com.project.bookstore.dto.user;
 import com.project.bookstore.validation.FieldMatch;
 import jakarta.validation.constraints.*;
 
+import java.util.List;
+
 @FieldMatch
 public record CreateUserRequestDto(
         @Email String email,

@@ -2,6 +2,8 @@ package com.project.bookstore.repository.user;
 
 import com.project.bookstore.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
 
 import java.util.Optional;
 
