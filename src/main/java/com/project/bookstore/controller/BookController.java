@@ -11,6 +11,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,6 +29,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class BookController {
     private final BookService bookService;
 
+    @PreAuthorize("hasAuthority('user')")
     @GetMapping
     @Operation(summary = "Find all books",
             description = "Get list of available books")
@@ -35,6 +37,7 @@ public class BookController {
         return bookService.findAll(pageable);
     }
 
+    @PreAuthorize("hasAuthority('user')")
     @GetMapping("/search")
     @Operation(summary = "Search books by certain parameters",
             description = "Get list of books found by title, author, price or isbn")
@@ -42,6 +45,7 @@ public class BookController {
         return bookService.search(searchParameters, pageable);
     }
 
+    @PreAuthorize("hasAuthority('user')")
     @GetMapping("/{id}")
     @Operation(summary = "Find book by id",
             description = "Find book by id")
@@ -49,6 +53,7 @@ public class BookController {
         return bookService.findById(id);
     }
 
+    @PreAuthorize("hasAuthority('admin')")
     @PostMapping
     @Operation(summary = "Save new book to database",
             description = "Save new book to database")
@@ -56,6 +61,7 @@ public class BookController {
         return bookService.save(requestDto);
     }
 
+    @PreAuthorize("hasAuthority('admin')")
     @PostMapping("/all")
     @Operation(summary = "Save list of books to database",
             description = "Save list of books to database")
@@ -63,6 +69,7 @@ public class BookController {
         return bookService.saveAll(requestDtos);
     }
 
+    @PreAuthorize("hasAuthority('admin')")
     @PutMapping("/{id}")
     @Operation(summary = "Update book by id",
             description = "Update book by id")
@@ -71,6 +78,7 @@ public class BookController {
         return ResponseEntity.ok(bookService.updateById(id, requestDto));
     }
 
+    @PreAuthorize("hasAuthority('admin')")
     @DeleteMapping("/{id}")
     @Operation(summary = "Delete book by id",
             description = "Delete book by id")

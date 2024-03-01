@@ -11,6 +11,7 @@ import com.project.bookstore.model.User;
 import com.project.bookstore.repository.role.RoleRepository;
 import com.project.bookstore.repository.user.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -21,17 +22,25 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
     public static final Long USER_ROLE_ID = 1L;
+    private static final Long ADMIN_ROLE_ID = 2L;
     private final UserRepository userRepository;
     private final UserMapper userMapper;
-    private final RoleRepository roleRepository;
+    private final PasswordEncoder encoder;
 
     @Override
     public UserDto register(CreateUserRequestDto requestDto) {
         if (userRepository.findByEmail(requestDto.email()).isPresent()) {
-            throw new RegistrationException("Such user already exists: " + requestDto);
+            throw new RegistrationException("Such user already exists: "
+                    + requestDto);
         }
         User newUser = userMapper.toModel(requestDto);
         newUser.setRoles(Set.of(new Role(USER_ROLE_ID)));
+        if (userRepository.count() == 0) {
+            newUser.setRoles(Set.of(
+                    new Role(USER_ROLE_ID),
+                    new Role(ADMIN_ROLE_ID)));
+        }
+        newUser.setPassword(encoder.encode(requestDto.password()));
         return userMapper.toDto(userRepository.save(newUser));
     }
 
@@ -47,6 +56,4 @@ public class UserServiceImpl implements UserService {
         User savedUser = userRepository.save(user);
         return userMapper.toUserWithRolesDto(savedUser);
     }
-
-
 }

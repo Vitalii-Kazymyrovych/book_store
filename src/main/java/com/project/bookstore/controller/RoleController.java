@@ -4,10 +4,10 @@ import com.project.bookstore.dto.role.CreateRoleRequestDto;
 import com.project.bookstore.dto.role.RoleDto;
 import com.project.bookstore.service.RoleService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/roles")
@@ -15,8 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class RoleController {
     private final RoleService roleService;
 
-    @PostMapping
-    public RoleDto save(@RequestBody CreateRoleRequestDto requestDto) {
-        return roleService.save(requestDto);
+    @PreAuthorize("hasAuthority('admin')")
+    @GetMapping
+    public List<RoleDto> findAll() {
+        return roleService.findAll();
     }
 }
