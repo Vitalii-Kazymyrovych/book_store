@@ -1,18 +1,24 @@
 package com.project.bookstore.controller;
 
-import com.project.bookstore.dto.BookDto;
-import com.project.bookstore.dto.BookSearchParameters;
-import com.project.bookstore.dto.CreateBookRequestDto;
+import com.project.bookstore.dto.book.BookDto;
+import com.project.bookstore.dto.book.BookSearchParameters;
+import com.project.bookstore.dto.book.CreateBookRequestDto;
 import com.project.bookstore.service.BookService;
-import java.util.List;
-
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import java.util.List;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Tag(name = "Book manager",
         description = "Endpoints for managing books")

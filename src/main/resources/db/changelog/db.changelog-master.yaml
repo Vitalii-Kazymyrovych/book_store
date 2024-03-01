@@ -5,3 +5,5 @@ databaseChangeLog:
       file: db/changelog/changes/02-change-coverImage-column-name.yaml
   - include:
       file: db/changelog/changes/03-create-is_deleted_column.yaml
+  - include:
+      file: db/changelog/changes/04-create-users-table.yaml

@@ -1,25 +1,19 @@
 package com.project.bookstore.service;
 
-import com.project.bookstore.dto.BookDto;
-import com.project.bookstore.dto.BookSearchParameters;
-import com.project.bookstore.dto.CreateBookRequestDto;
+import com.project.bookstore.dto.book.BookDto;
+import com.project.bookstore.dto.book.BookSearchParameters;
+import com.project.bookstore.dto.book.CreateBookRequestDto;
 import com.project.bookstore.exception.EntityNotFoundException;
 import com.project.bookstore.mapper.BookMapper;
 import com.project.bookstore.model.Book;
-import com.project.bookstore.repository.SpecificationBuilder;
 import com.project.bookstore.repository.book.BookRepository;
-
+import com.project.bookstore.repository.book.BookSpecificationBuilder;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
-
-import com.project.bookstore.repository.book.BookSpecificationBuilder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 
 @RequiredArgsConstructor
 @Service

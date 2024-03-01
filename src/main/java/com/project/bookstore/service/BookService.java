@@ -1,14 +1,14 @@
 package com.project.bookstore.service;
 
-import com.project.bookstore.dto.BookDto;
-import com.project.bookstore.dto.BookSearchParameters;
-import com.project.bookstore.dto.CreateBookRequestDto;
+import com.project.bookstore.dto.book.BookDto;
+import com.project.bookstore.dto.book.BookSearchParameters;
+import com.project.bookstore.dto.book.CreateBookRequestDto;
+import jakarta.validation.Valid;
+import java.util.List;
 import org.springframework.data.domain.Pageable;
 
-import java.util.List;
-
 public interface BookService {
-    BookDto save(CreateBookRequestDto requestDto);
+    BookDto save(@Valid CreateBookRequestDto requestDto);
 
     List<BookDto> saveAll(CreateBookRequestDto[] requestDtos);
 

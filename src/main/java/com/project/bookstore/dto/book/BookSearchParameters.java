@@ -1,7 +1,4 @@
-package com.project.bookstore.dto;
-
-import java.math.BigDecimal;
-import java.time.ZonedDateTime;
+package com.project.bookstore.dto.book;
 
 public record BookSearchParameters
         (String[] titles,
