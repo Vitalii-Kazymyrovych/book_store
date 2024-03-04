@@ -8,15 +8,12 @@ import com.project.bookstore.exception.RegistrationException;
 import com.project.bookstore.mapper.UserMapper;
 import com.project.bookstore.model.Role;
 import com.project.bookstore.model.User;
-import com.project.bookstore.repository.role.RoleRepository;
 import com.project.bookstore.repository.user.UserRepository;
+import java.util.Set;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor

@@ -2,7 +2,6 @@ package com.project.bookstore.controller;
 
 import com.project.bookstore.dto.user.CreateUserRequestDto;
 import com.project.bookstore.dto.user.UserDto;
-import com.project.bookstore.model.User;
 import com.project.bookstore.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

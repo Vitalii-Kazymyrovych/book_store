@@ -4,9 +4,10 @@ import com.project.bookstore.config.MapperConfig;
 import com.project.bookstore.dto.role.RoleDto;
 import com.project.bookstore.model.Role;
 import com.project.bookstore.dto.role.CreateRoleRequestDto;
-import org.mapstruct.*;
-
 import java.util.Arrays;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.Named;
 
 @Mapper(config = MapperConfig.class)
 public interface RoleMapper {

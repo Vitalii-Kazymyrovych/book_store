@@ -1,13 +1,11 @@
 package com.project.bookstore.controller;
 
-import com.project.bookstore.dto.role.CreateRoleRequestDto;
 import com.project.bookstore.dto.role.RoleDto;
 import com.project.bookstore.service.RoleService;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/roles")

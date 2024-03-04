@@ -6,10 +6,11 @@ import com.project.bookstore.dto.user.UserDto;
 import com.project.bookstore.dto.user.UserWithRolesDto;
 import com.project.bookstore.model.Role;
 import com.project.bookstore.model.User;
-import org.mapstruct.*;
-
 import java.util.Set;
 import java.util.stream.Collectors;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.Named;
 
 @Mapper(config = MapperConfig.class)
 public interface UserMapper {
