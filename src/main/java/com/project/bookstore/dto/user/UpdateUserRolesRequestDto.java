@@ -4,6 +4,6 @@ import jakarta.validation.constraints.Email;
 import java.util.List;
 
 public record UpdateUserRolesRequestDto(
-        @Email String email,
+        Long id,
         List<Long> roleIds) {
 }

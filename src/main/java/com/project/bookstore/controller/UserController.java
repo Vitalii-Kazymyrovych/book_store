@@ -17,7 +17,7 @@ public class UserController {
     private final UserService userService;
 
     @PreAuthorize("hasAuthority('admin')")
-    @PutMapping("/update_roles")
+    @PutMapping("/update-roles")
     public UserWithRolesDto updateUserRoles(@RequestBody UpdateUserRolesRequestDto requestDto) {
         return userService.updateUserRoles(requestDto);
     }

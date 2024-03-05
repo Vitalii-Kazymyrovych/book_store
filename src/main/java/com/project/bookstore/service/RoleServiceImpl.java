@@ -23,21 +23,4 @@ public class RoleServiceImpl implements RoleService {
                 .map(roleMapper::toDto)
                 .toList();
     }
-
-    @Override
-    public void fillRolesTable() {
-        long rolesQuantity = roleRepository.count();
-        if (rolesQuantity == 0 || rolesQuantity < Role.RoleName.values().length) {
-            Arrays.stream(Role.RoleName.values())
-                    .map(Role.RoleName::toString)
-                    .map(CreateRoleRequestDto::new)
-                    .map(roleMapper::toModel)
-                    .toList()
-                    .forEach(role -> {
-                        if (roleRepository.findByRoleName(role.getRoleName()).isEmpty()) {
-                            roleRepository.save(role);
-                        }
-                    });
-        }
-    }
 }
