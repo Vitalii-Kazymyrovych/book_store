@@ -42,4 +42,3 @@ public class Book {
     @Column(name = "is_deleted")
     private boolean isDeleted = false;
 }
-

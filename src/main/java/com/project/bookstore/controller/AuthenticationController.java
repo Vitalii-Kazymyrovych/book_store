@@ -5,10 +5,7 @@ import com.project.bookstore.dto.user.UserDto;
 import com.project.bookstore.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/auth")
@@ -20,5 +17,4 @@ public class AuthenticationController {
     public UserDto registerUser(@RequestBody @Valid CreateUserRequestDto requestDto) {
         return userService.register(requestDto);
     }
-
 }
