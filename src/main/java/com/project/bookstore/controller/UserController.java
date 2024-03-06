@@ -2,7 +2,7 @@ package com.project.bookstore.controller;
 
 import com.project.bookstore.dto.user.UpdateUserRolesRequestDto;
 import com.project.bookstore.dto.user.UserWithRolesDto;
-import com.project.bookstore.service.UserService;
+import com.project.bookstore.service.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PutMapping;

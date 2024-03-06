@@ -1,7 +1,7 @@
 package com.project.bookstore.controller;
 
 import com.project.bookstore.dto.role.RoleDto;
-import com.project.bookstore.service.RoleService;
+import com.project.bookstore.service.role.RoleService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;

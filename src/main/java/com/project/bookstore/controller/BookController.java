@@ -3,7 +3,7 @@ package com.project.bookstore.controller;
 import com.project.bookstore.dto.book.BookDto;
 import com.project.bookstore.dto.book.BookSearchParameters;
 import com.project.bookstore.dto.book.CreateBookRequestDto;
-import com.project.bookstore.service.BookService;
+import com.project.bookstore.service.book.BookService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import java.util.List;
@@ -73,8 +73,9 @@ public class BookController {
     @PutMapping("/{id}")
     @Operation(summary = "Update book by id",
             description = "Update book by id")
-    public ResponseEntity<BookDto> updateById(@PathVariable Long id,
-                                              @RequestBody @Valid CreateBookRequestDto requestDto) {
+    public ResponseEntity<BookDto> updateById(
+            @PathVariable Long id,
+            @RequestBody @Valid CreateBookRequestDto requestDto) {
         return ResponseEntity.ok(bookService.updateById(id, requestDto));
     }
 

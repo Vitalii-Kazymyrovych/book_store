@@ -1,4 +1,4 @@
-package com.project.bookstore.service;
+package com.project.bookstore.service.role;
 
 import com.project.bookstore.dto.role.RoleDto;
 import java.util.List;
