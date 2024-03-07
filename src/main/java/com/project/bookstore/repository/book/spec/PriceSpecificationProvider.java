@@ -2,8 +2,8 @@ package com.project.bookstore.repository.book.spec;
 
 import com.project.bookstore.model.Book;
 import com.project.bookstore.repository.SpecificationProvider;
-import org.springframework.stereotype.Component;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.stereotype.Component;
 
 @Component
 public class PriceSpecificationProvider implements SpecificationProvider<Book> {

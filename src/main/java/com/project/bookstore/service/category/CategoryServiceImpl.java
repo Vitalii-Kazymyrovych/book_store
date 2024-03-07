@@ -2,15 +2,13 @@ package com.project.bookstore.service.category;
 
 import com.project.bookstore.dto.category.CategoryDto;
 import com.project.bookstore.dto.category.CreateCategoryRequestDto;
+import com.project.bookstore.exception.EntityNotFoundException;
 import com.project.bookstore.mapper.CategoryMapper;
-import com.project.bookstore.model.Book;
 import com.project.bookstore.model.Category;
 import com.project.bookstore.repository.category.CategoryRepository;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -27,10 +25,10 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public List<CategoryDto> saveAll(List<CreateCategoryRequestDto> requestDtos) {
-        return categoryRepository.saveAll(requestDtos.stream()
+        List<Category> savedCategories = categoryRepository.saveAll(requestDtos.stream()
                 .map(categoryMapper::toModel)
-                .toList())
-                .stream()
+                .toList());
+        return savedCategories.stream()
                 .map(categoryMapper::toDto)
                 .toList();
     }
@@ -47,7 +45,9 @@ public class CategoryServiceImpl implements CategoryService {
     public CategoryDto findById(Long id) {
         return categoryRepository.findById(id)
                 .map(categoryMapper::toDto)
-                .orElseThrow();
+                .orElseThrow(
+                        () -> new EntityNotFoundException(
+                                "Can't find entity by id: " + id));
     }
 
     @Override

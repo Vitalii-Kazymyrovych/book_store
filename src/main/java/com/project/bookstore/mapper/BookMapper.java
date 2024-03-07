@@ -6,24 +6,28 @@ import com.project.bookstore.dto.book.BookWithoutCategoryIdsDto;
 import com.project.bookstore.dto.book.CreateBookRequestDto;
 import com.project.bookstore.model.Book;
 import com.project.bookstore.model.Category;
-import jdk.jfr.Name;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
-
 @Mapper(config = MapperConfig.class)
 public interface BookMapper {
 
-    @Mapping(target = "categoryIds", source = "categories", qualifiedByName = "createCategoryIdsSet")
+    @Mapping(
+            target = "categoryIds",
+            source = "categories",
+            qualifiedByName = "createCategoryIdsSet")
     BookDto toDto(Book book);
 
     BookWithoutCategoryIdsDto toBookWithoutCategoryIdsDto(Book book);
 
-    @Mapping(target = "categories", source = "categoryIds", qualifiedByName = "createCategoriesSet")
+    @Mapping(
+            target = "categories",
+            source = "categoryIds",
+            qualifiedByName = "createCategoriesSet")
     Book toModel(CreateBookRequestDto requestDto);
 
     @Named("createCategoryIdsSet")

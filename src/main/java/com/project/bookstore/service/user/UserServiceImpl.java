@@ -45,7 +45,10 @@ public class UserServiceImpl implements UserService {
     public UserWithRolesDto updateUserRoles(UpdateUserRolesRequestDto requestDto) {
         User user = userRepository
                 .findById(requestDto.id())
-                .orElseThrow(() -> new RuntimeException("Can't find user by id: " + requestDto.id()));
+                .orElseThrow(
+                        () -> new RuntimeException(
+                                "Can't find user by id: "
+                                        + requestDto.id()));
         Set<Role> newRoles = requestDto
                 .roleIds()
                 .stream()

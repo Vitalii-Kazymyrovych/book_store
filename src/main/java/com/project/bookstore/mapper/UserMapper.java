@@ -14,7 +14,10 @@ import org.mapstruct.Named;
 
 @Mapper(config = MapperConfig.class)
 public interface UserMapper {
-    @Mapping(target = "roleIds", source = "roles", qualifiedByName = "createRoleIdSet")
+    @Mapping(
+            target = "roleIds",
+            source = "roles",
+            qualifiedByName = "createRoleIdSet")
     UserWithRolesDto toUserWithRolesDto(User user);
 
     UserDto toDto(User user);
