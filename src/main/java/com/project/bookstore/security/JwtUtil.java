@@ -5,17 +5,17 @@ import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
-import org.springframework.stereotype.Component;
 import java.nio.charset.StandardCharsets;
 import java.security.Key;
 import java.time.Instant;
 import java.util.Date;
 import java.util.function.Function;
+import org.springframework.stereotype.Component;
 
 @Component
 public class JwtUtil {
-    private final static Long EXPIRATION = 300000L;
-    private final static Key SECRET = Keys
+    private static final Long EXPIRATION = 300000L;
+    private static final Key SECRET = Keys
             .hmacShaKeyFor(("asdfasdfasdfDFDFtesajsdgfajsdgfj1243adgshf")
                     .getBytes(StandardCharsets.UTF_8));
 

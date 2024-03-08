@@ -1,4 +1,4 @@
-package com.project.bookstore.service;
+package com.project.bookstore.service.user;
 
 import com.project.bookstore.dto.user.CreateUserRequestDto;
 import com.project.bookstore.dto.user.UpdateUserRolesRequestDto;

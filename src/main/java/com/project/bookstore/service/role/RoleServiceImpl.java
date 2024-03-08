@@ -1,11 +1,8 @@
-package com.project.bookstore.service;
+package com.project.bookstore.service.role;
 
-import com.project.bookstore.dto.role.CreateRoleRequestDto;
 import com.project.bookstore.dto.role.RoleDto;
 import com.project.bookstore.mapper.RoleMapper;
-import com.project.bookstore.model.Role;
 import com.project.bookstore.repository.role.RoleRepository;
-import java.util.Arrays;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

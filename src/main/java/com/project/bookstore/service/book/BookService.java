@@ -1,7 +1,8 @@
-package com.project.bookstore.service;
+package com.project.bookstore.service.book;
 
 import com.project.bookstore.dto.book.BookDto;
 import com.project.bookstore.dto.book.BookSearchParameters;
+import com.project.bookstore.dto.book.BookWithoutCategoryIdsDto;
 import com.project.bookstore.dto.book.CreateBookRequestDto;
 import jakarta.validation.Valid;
 import java.util.List;
@@ -21,4 +22,6 @@ public interface BookService {
     BookDto updateById(Long id, CreateBookRequestDto requestDto);
 
     void deleteById(Long id);
+
+    List<BookWithoutCategoryIdsDto> findAllByCategoryId(Long id);
 }
