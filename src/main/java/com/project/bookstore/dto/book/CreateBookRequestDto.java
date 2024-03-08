@@ -1,7 +1,7 @@
 package com.project.bookstore.dto.book;
 
-import com.project.bookstore.validation.Isbn;
-import com.project.bookstore.validation.Url;
+import com.project.bookstore.validation.isbn.Isbn;
+import com.project.bookstore.validation.url.Url;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
