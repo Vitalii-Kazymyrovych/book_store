@@ -7,7 +7,9 @@ import com.project.bookstore.dto.user.UserWithRolesDto;
 import com.project.bookstore.exception.RegistrationException;
 import com.project.bookstore.mapper.UserMapper;
 import com.project.bookstore.model.Role;
+import com.project.bookstore.model.ShoppingCart;
 import com.project.bookstore.model.User;
+import com.project.bookstore.repository.shopping.cart.ShoppingCartRepository;
 import com.project.bookstore.repository.user.UserRepository;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -23,6 +25,7 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
     private final PasswordEncoder encoder;
+    private final ShoppingCartRepository shoppingCartRepository;
 
     @Override
     public UserDto register(CreateUserRequestDto requestDto) {
@@ -38,7 +41,9 @@ public class UserServiceImpl implements UserService {
                     new Role(ADMIN_ROLE_ID)));
         }
         newUser.setPassword(encoder.encode(requestDto.password()));
-        return userMapper.toDto(userRepository.save(newUser));
+        User savedUser = userRepository.save(newUser);
+        shoppingCartRepository.save(new ShoppingCart(savedUser));
+        return userMapper.toDto(savedUser);
     }
 
     @Override
