@@ -11,8 +11,10 @@ import com.project.bookstore.mapper.CartItemMapper;
 import com.project.bookstore.mapper.ShoppingCartMapper;
 import com.project.bookstore.model.CartItem;
 import com.project.bookstore.model.ShoppingCart;
+import com.project.bookstore.model.User;
 import com.project.bookstore.repository.cart.item.CartItemRepository;
 import com.project.bookstore.repository.shopping.cart.ShoppingCartRepository;
+import com.project.bookstore.repository.user.UserRepository;
 import java.util.Objects;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -24,14 +26,24 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     private final ShoppingCartMapper shoppingCartMapper;
     private final CartItemMapper cartItemMapper;
     private final CartItemRepository cartItemRepository;
+    private final UserRepository userRepository;
 
     @Override
     public ShoppingCartDto findCartByUserName(String username) {
-        return shoppingCartRepository.findByUserEmail(username)
-                .map(shoppingCartMapper::toDto)
-                .orElseThrow(
-                        () -> new EntityNotFoundException(
-                                "Can't find shopping cart by username "));
+        if (shoppingCartRepository.findByUserEmail(username).isEmpty())  {
+            User currentUser = userRepository.findByEmail(username).orElseThrow(
+                    () -> new EntityNotFoundException(
+                            "Can't find user by username: "
+                                    + username));
+            return shoppingCartMapper.toDto(
+                    shoppingCartRepository.save(
+                            new ShoppingCart(
+                                    currentUser)));
+        } else {
+            return shoppingCartRepository.findByUserEmail(username)
+                    .map(shoppingCartMapper::toDto)
+                    .get();
+        }
     }
 
     @Override

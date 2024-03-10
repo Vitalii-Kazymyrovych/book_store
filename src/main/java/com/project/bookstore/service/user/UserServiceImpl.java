@@ -4,12 +4,11 @@ import com.project.bookstore.dto.user.CreateUserRequestDto;
 import com.project.bookstore.dto.user.UpdateUserRolesRequestDto;
 import com.project.bookstore.dto.user.UserDto;
 import com.project.bookstore.dto.user.UserWithRolesDto;
+import com.project.bookstore.exception.EntityNotFoundException;
 import com.project.bookstore.exception.RegistrationException;
 import com.project.bookstore.mapper.UserMapper;
 import com.project.bookstore.model.Role;
-import com.project.bookstore.model.ShoppingCart;
 import com.project.bookstore.model.User;
-import com.project.bookstore.repository.shopping.cart.ShoppingCartRepository;
 import com.project.bookstore.repository.user.UserRepository;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -25,7 +24,6 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
     private final PasswordEncoder encoder;
-    private final ShoppingCartRepository shoppingCartRepository;
 
     @Override
     public UserDto register(CreateUserRequestDto requestDto) {
@@ -41,9 +39,7 @@ public class UserServiceImpl implements UserService {
                     new Role(ADMIN_ROLE_ID)));
         }
         newUser.setPassword(encoder.encode(requestDto.password()));
-        User savedUser = userRepository.save(newUser);
-        shoppingCartRepository.save(new ShoppingCart(savedUser));
-        return userMapper.toDto(savedUser);
+        return userMapper.toDto(userRepository.save(newUser));
     }
 
     @Override
@@ -51,7 +47,7 @@ public class UserServiceImpl implements UserService {
         User user = userRepository
                 .findById(requestDto.id())
                 .orElseThrow(
-                        () -> new RuntimeException(
+                        () -> new EntityNotFoundException(
                                 "Can't find user by id: "
                                         + requestDto.id()));
         Set<Role> newRoles = requestDto
