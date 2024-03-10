@@ -23,7 +23,7 @@ public class ShoppingCart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne
     private User user;
     @OneToMany(mappedBy = "shoppingCart", fetch = FetchType.EAGER)
     private Set<CartItem> cartItems = new HashSet<>();

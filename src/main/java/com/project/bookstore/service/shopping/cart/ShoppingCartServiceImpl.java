@@ -30,31 +30,15 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 
     @Override
     public ShoppingCartDto findCartByUserName(String username) {
-        if (shoppingCartRepository.findByUserEmail(username).isEmpty())  {
-            User currentUser = userRepository.findByEmail(username).orElseThrow(
-                    () -> new EntityNotFoundException(
-                            "Can't find user by username: "
-                                    + username));
-            return shoppingCartMapper.toDto(
-                    shoppingCartRepository.save(
-                            new ShoppingCart(
-                                    currentUser)));
-        } else {
-            return shoppingCartRepository.findByUserEmail(username)
-                    .map(shoppingCartMapper::toDto)
-                    .get();
-        }
+
+        return shoppingCartMapper.toDto(findOrCreateShoppingCart(username));
     }
 
     @Override
     public CartItemWithoutBookTitleDto postItem(
             String username,
             CreateCartItemRequestDto requestDto) {
-        ShoppingCart shoppingCart = shoppingCartRepository
-                .findByUserEmail(username)
-                .orElseThrow(
-                        () -> new EntityNotFoundException(
-                                "Can't find shopping cart by username: " + username));
+        ShoppingCart shoppingCart = findOrCreateShoppingCart(username);
         CartItem newItem = cartItemMapper.toModel(requestDto);
         newItem.setShoppingCart(shoppingCart);
         CartItem savedItem = cartItemRepository.save(newItem);
@@ -88,5 +72,17 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
             throw new AuthorizationException(
                     "Access denied. You can't edit shopping cart of another user.");
         }
+    }
+
+    private ShoppingCart findOrCreateShoppingCart(String username) {
+        return shoppingCartRepository.findByUserEmail(username)
+                .orElseGet(() -> {
+                    User currentUser = userRepository.findByEmail(username)
+                            .orElseThrow(
+                            () -> new EntityNotFoundException(
+                                    "Can't find user by username: "
+                                            + username));
+                    return shoppingCartRepository.save(new ShoppingCart(currentUser));
+                });
     }
 }
