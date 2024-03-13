@@ -23,5 +23,5 @@ public interface BookService {
 
     void deleteById(Long id);
 
-    List<BookWithoutCategoryIdsDto> findAllByCategoryId(Long id);
+    List<BookWithoutCategoryIdsDto> findAllByCategoryId(Long id, Pageable pageable);
 }

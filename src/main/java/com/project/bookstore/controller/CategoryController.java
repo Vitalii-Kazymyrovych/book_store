@@ -7,6 +7,7 @@ import com.project.bookstore.service.book.BookService;
 import com.project.bookstore.service.category.CategoryService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,8 +39,8 @@ public class CategoryController {
 
     @PreAuthorize("hasAuthority('user')")
     @GetMapping
-    public List<CategoryDto> findAll() {
-        return categoryService.findAll();
+    public List<CategoryDto> findAll(Pageable pageable) {
+        return categoryService.findAll(pageable);
     }
 
     @PreAuthorize("hasAuthority('user')")
@@ -58,8 +59,10 @@ public class CategoryController {
 
     @PreAuthorize("hasAuthority('user')")
     @GetMapping("/{id}/books")
-    public List<BookWithoutCategoryIdsDto> findAllBooksByCategoryId(@PathVariable Long id) {
-        return bookService.findAllByCategoryId(id);
+    public List<BookWithoutCategoryIdsDto> findAllBooksByCategoryId(
+            @PathVariable Long id,
+            Pageable pageable) {
+        return bookService.findAllByCategoryId(id, pageable);
     }
 
     @PreAuthorize("hasAuthority('admin')")
