@@ -7,6 +7,7 @@ import com.project.bookstore.dto.book.CreateBookRequestDto;
 import com.project.bookstore.model.Book;
 import com.project.bookstore.model.Category;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 import org.mapstruct.Mapper;
@@ -44,5 +45,12 @@ public interface BookMapper {
                 .stream()
                 .map(Category::new)
                 .collect(Collectors.toSet());
+    }
+
+    @Named("bookFromId")
+    default Book bookFromId(Long id) {
+        return Optional.ofNullable(id)
+                .map(Book::new)
+                .orElse(null);
     }
 }

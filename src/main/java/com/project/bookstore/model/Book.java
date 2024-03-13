@@ -53,4 +53,8 @@ public class Book {
     private Set<Category> categories = new HashSet<>();
     @Column(name = "is_deleted")
     private boolean isDeleted = false;
+
+    public Book(Long id) {
+        this.id = id;
+    }
 }

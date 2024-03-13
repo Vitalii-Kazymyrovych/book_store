@@ -4,6 +4,7 @@ import com.project.bookstore.dto.user.CreateUserRequestDto;
 import com.project.bookstore.dto.user.UpdateUserRolesRequestDto;
 import com.project.bookstore.dto.user.UserDto;
 import com.project.bookstore.dto.user.UserWithRolesDto;
+import com.project.bookstore.exception.EntityNotFoundException;
 import com.project.bookstore.exception.RegistrationException;
 import com.project.bookstore.mapper.UserMapper;
 import com.project.bookstore.model.Role;
@@ -46,7 +47,7 @@ public class UserServiceImpl implements UserService {
         User user = userRepository
                 .findById(requestDto.id())
                 .orElseThrow(
-                        () -> new RuntimeException(
+                        () -> new EntityNotFoundException(
                                 "Can't find user by id: "
                                         + requestDto.id()));
         Set<Role> newRoles = requestDto

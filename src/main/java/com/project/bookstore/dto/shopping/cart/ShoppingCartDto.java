@@ -1,0 +1,10 @@
+package com.project.bookstore.dto.shopping.cart;
+
+import com.project.bookstore.dto.cart.item.CartItemDto;
+import java.util.List;
+
+public record ShoppingCartDto(
+        Long id,
+        Long userId,
+        List<CartItemDto> cartItems) {
+}
