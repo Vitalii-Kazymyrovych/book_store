@@ -86,7 +86,7 @@ public class OrderServiceImpl implements OrderService {
                 .orElseThrow(() -> new EntityNotFoundException(
                         "Can't find order by id: " + orderId));
         Order.Status newStatus = Arrays.stream(Order.Status.values())
-                .filter(st -> st.toString().equalsIgnoreCase(updateDto.status()))
+                .filter(st -> st.name().equalsIgnoreCase(updateDto.status()))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(
                         "Invalid status name: "

@@ -24,7 +24,7 @@ public interface OrderMapper {
 
     @Named("statusToString")
     default String statusToString(Order.Status status) {
-        return status.toString().toUpperCase();
+        return status.name();
     }
 
     @Named("dateToString")

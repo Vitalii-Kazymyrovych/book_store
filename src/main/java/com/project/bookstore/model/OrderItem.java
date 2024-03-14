@@ -10,14 +10,16 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import java.math.BigDecimal;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 
 @Entity
 @Table(name = "order_items")
 @Setter
 @Getter
-@RequiredArgsConstructor
+@SQLDelete(sql = "UPDATE order_items SET is_deleted = true WHERE id=?")
+@Where(clause = "is_deleted=false")
 public class OrderItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,4 +32,6 @@ public class OrderItem {
     private Integer quantity;
     @Column(nullable = false)
     private BigDecimal price;
+    @Column(name = "is_deleted")
+    private boolean isDeleted = false;
 }

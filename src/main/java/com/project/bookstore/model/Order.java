@@ -16,14 +16,16 @@ import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 
 @Entity
 @Table(name = "orders")
 @Setter
 @Getter
-@RequiredArgsConstructor
+@SQLDelete(sql = "UPDATE orders SET is_deleted = true WHERE id=?")
+@Where(clause = "is_deleted=false")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,23 +43,14 @@ public class Order {
     private String shippingAddress;
     @OneToMany(mappedBy = "order", fetch = FetchType.LAZY)
     private Set<OrderItem> orderItems = new HashSet<>();
+    @Column(name = "is_deleted")
+    private boolean isDeleted = false;
 
     public enum Status {
-        NEW("new"),
-        PAID("paid"),
-        PROCESSING("processing"),
-        DELIVERED("delivered"),
-        CANCELLED("cancelled");
-
-        private final String name;
-
-        Status(String name) {
-            this.name = name;
-        }
-
-        @Override
-        public String toString() {
-            return name;
-        }
+        NEW,
+        PAID,
+        PROCESSING,
+        DELIVERED,
+        CANCELLED
     }
 }
