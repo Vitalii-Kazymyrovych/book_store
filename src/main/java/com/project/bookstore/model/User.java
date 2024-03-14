@@ -57,7 +57,7 @@ public class User implements UserDetails {
         return roles
                 .stream()
                 .map(Role::getRoleName)
-                .map(Role.RoleName::toString)
+                .map(rn -> rn.name().toLowerCase())
                 .map(SimpleGrantedAuthority::new)
                 .toList();
     }
