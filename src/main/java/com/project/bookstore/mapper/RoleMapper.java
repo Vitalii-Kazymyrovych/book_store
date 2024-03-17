@@ -26,7 +26,7 @@ public interface RoleMapper {
     @Named("createNewRole")
     default Role.RoleName createNewRole(String roleName) {
         return Arrays.stream(Role.RoleName.values())
-                .filter(rn -> rn.toString().equalsIgnoreCase(roleName))
+                .filter(rn -> rn.name().equalsIgnoreCase(roleName))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(
                         "Invalid role name: " + roleName));
@@ -34,6 +34,6 @@ public interface RoleMapper {
 
     @Named("roleNameToString")
     default String roleNameToString(Role.RoleName roleName) {
-        return roleName.toString();
+        return roleName.name().toLowerCase();
     }
 }

@@ -1,10 +1,9 @@
 package com.project.bookstore.controller;
 
-import com.project.bookstore.dto.cart.item.CartItemDto;
-import com.project.bookstore.dto.cart.item.CartItemWithoutBookTitleDto;
-import com.project.bookstore.dto.cart.item.CreateCartItemRequestDto;
-import com.project.bookstore.dto.cart.item.UpdateCartItemRequestDto;
 import com.project.bookstore.dto.shopping.cart.ShoppingCartDto;
+import com.project.bookstore.dto.shopping.item.CartItemWithoutBookTitleDto;
+import com.project.bookstore.dto.shopping.item.CreateCartItemRequestDto;
+import com.project.bookstore.dto.shopping.item.UpdateCartItemRequestDto;
 import com.project.bookstore.service.shopping.cart.ShoppingCartService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -40,7 +39,7 @@ public class ShoppingCartController {
 
     @PreAuthorize("hasAuthority('user')")
     @PutMapping("/cart-items/{id}")
-    public CartItemDto updateItem(
+    public CartItemWithoutBookTitleDto updateItem(
             @PathVariable Long id,
             Authentication authentication,
             @RequestBody UpdateCartItemRequestDto requestDto) {

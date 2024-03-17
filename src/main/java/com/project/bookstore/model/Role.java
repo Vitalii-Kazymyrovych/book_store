@@ -28,16 +28,8 @@ public class Role {
         this.id = id;
     }
 
-    @RequiredArgsConstructor
     public enum RoleName {
-        USER("user"),
-        ADMIN("admin");
-
-        private final String name;
-
-        @Override
-        public String toString() {
-            return name;
-        }
+        USER,
+        ADMIN
     }
 }
