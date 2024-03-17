@@ -184,5 +184,6 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		<finalName>bookstore</finalName>
 	</build>
 </project>
