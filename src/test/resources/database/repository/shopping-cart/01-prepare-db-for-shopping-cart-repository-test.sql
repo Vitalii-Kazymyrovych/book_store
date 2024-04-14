@@ -8,8 +8,8 @@ INSERT INTO book_category (book_id, category_id) VALUES
 (1, 1),
 (2, 1);
 
-INSERT INTO users (email, password, first_name, last_name, shipping_address)
-VALUES ('uniqueUser456@sample.net', 'password', 'first name', 'last name', 'address');
+INSERT INTO users (id, email, password, first_name, last_name, shipping_address)
+VALUES (1, 'uniqueUser456@sample.net', 'password', 'first name', 'last name', 'address');
 
 INSERT INTO shopping_carts (user_id) VALUES (1);
 

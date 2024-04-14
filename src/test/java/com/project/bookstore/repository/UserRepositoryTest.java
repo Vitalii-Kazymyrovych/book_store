@@ -27,12 +27,10 @@ class UserRepositoryTest {
     @DisplayName("Find by email with valid email")
     public void findByEmail_ValiEmail_OptionalWithUser() {
         // Given
-        String validEmail = "email3";
+        String validEmail = "creativeName789@examples.org";
         Optional<User> expected = userRepository.findById(1L);
-
         // When
         Optional<User> actual = userRepository.findByEmail(validEmail);
-
         // Then
         assertEquals(expected, actual);
     }

@@ -1,5 +1,5 @@
-INSERT INTO users (email, password, first_name, last_name, shipping_address)
-VALUES ('randomUser123@domain.com', 'password', 'first name', 'last name', 'address');
+INSERT INTO users (id, email, password, first_name, last_name, shipping_address)
+VALUES (1, 'randomUser123@domain.com', 'password', 'first name', 'last name', 'address');
 
 INSERT INTO orders (user_id, status, order_date, total, shipping_address) VALUES
 (1, 'NEW', '2024-03-29 15:44:10', 100.00, 'address'),
