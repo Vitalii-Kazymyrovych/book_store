@@ -1,6 +1,14 @@
 package com.project.bookstore.controller;
 
-import com.project.bookstore.config.SwaggerConstants;
+import static com.project.bookstore.config.SwaggerConstants.DELETE_CART_ITEM_DESC;
+import static com.project.bookstore.config.SwaggerConstants.DELETE_CART_ITEM_SUM;
+import static com.project.bookstore.config.SwaggerConstants.GET_CART_DESC;
+import static com.project.bookstore.config.SwaggerConstants.GET_CART_SUM;
+import static com.project.bookstore.config.SwaggerConstants.POST_CART_ITEM_DESC;
+import static com.project.bookstore.config.SwaggerConstants.POST_CART_ITEM_SUM;
+import static com.project.bookstore.config.SwaggerConstants.UPDATE_CART_ITEM_DESC;
+import static com.project.bookstore.config.SwaggerConstants.UPDATE_CART_ITEM_SUM;
+
 import com.project.bookstore.dto.shopping.cart.ShoppingCartDto;
 import com.project.bookstore.dto.shopping.item.CartItemWithoutBookTitleDto;
 import com.project.bookstore.dto.shopping.item.CreateCartItemRequestDto;
@@ -19,8 +27,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import static com.project.bookstore.config.SwaggerConstants.*;
 
 @RestController
 @RequiredArgsConstructor

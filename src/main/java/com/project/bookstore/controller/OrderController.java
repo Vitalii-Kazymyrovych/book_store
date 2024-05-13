@@ -1,16 +1,25 @@
 package com.project.bookstore.controller;
 
-import com.project.bookstore.config.SwaggerConstants;
+import static com.project.bookstore.config.SwaggerConstants.FIND_ALL_ORDERS_DESC;
+import static com.project.bookstore.config.SwaggerConstants.FIND_ALL_ORDERS_SUM;
+import static com.project.bookstore.config.SwaggerConstants.FIND_ORDER_ITEM_BY_ID_DESC;
+import static com.project.bookstore.config.SwaggerConstants.FIND_ORDER_ITEM_BY_ID_SUM;
+import static com.project.bookstore.config.SwaggerConstants.GET_ORDER_ITEMS_DESC;
+import static com.project.bookstore.config.SwaggerConstants.GET_ORDER_ITEMS_SUM;
+import static com.project.bookstore.config.SwaggerConstants.SAVE_ORDER_DESC;
+import static com.project.bookstore.config.SwaggerConstants.SAVE_ORDER_SUM;
+import static com.project.bookstore.config.SwaggerConstants.UPDATE_ORDER_STATUS_DESC;
+import static com.project.bookstore.config.SwaggerConstants.UPDATE_ORDER_STATUS_SUM;
+
 import com.project.bookstore.dto.order.CreateOrderRequestDto;
 import com.project.bookstore.dto.order.OrderDto;
 import com.project.bookstore.dto.order.OrderWithoutItemsDto;
 import com.project.bookstore.dto.order.UpdateOrderStatusDto;
 import com.project.bookstore.dto.order.item.OrderItemDto;
 import com.project.bookstore.service.order.OrderService;
-import java.util.List;
-
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -22,8 +31,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import static com.project.bookstore.config.SwaggerConstants.*;
 
 @RestController
 @RequestMapping("/orders")

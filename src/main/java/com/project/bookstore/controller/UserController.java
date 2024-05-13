@@ -1,6 +1,8 @@
 package com.project.bookstore.controller;
 
-import com.project.bookstore.config.SwaggerConstants;
+import static com.project.bookstore.config.SwaggerConstants.UPDATE_USER_ROLES_DESC;
+import static com.project.bookstore.config.SwaggerConstants.UPDATE_USER_ROLES_SUM;
+
 import com.project.bookstore.dto.user.UpdateUserRolesRequestDto;
 import com.project.bookstore.dto.user.UserWithRolesDto;
 import com.project.bookstore.service.user.UserService;
@@ -12,9 +14,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import static com.project.bookstore.config.SwaggerConstants.UPDATE_USER_ROLES_DESC;
-import static com.project.bookstore.config.SwaggerConstants.UPDATE_USER_ROLES_SUM;
 
 @RestController
 @RequestMapping("/users")
