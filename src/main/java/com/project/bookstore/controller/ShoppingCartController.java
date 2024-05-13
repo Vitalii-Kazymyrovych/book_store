@@ -1,10 +1,13 @@
 package com.project.bookstore.controller;
 
+import com.project.bookstore.config.SwaggerConstants;
 import com.project.bookstore.dto.shopping.cart.ShoppingCartDto;
 import com.project.bookstore.dto.shopping.item.CartItemWithoutBookTitleDto;
 import com.project.bookstore.dto.shopping.item.CreateCartItemRequestDto;
 import com.project.bookstore.dto.shopping.item.UpdateCartItemRequestDto;
 import com.project.bookstore.service.shopping.cart.ShoppingCartService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -17,28 +20,34 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import static com.project.bookstore.config.SwaggerConstants.*;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/cart")
+@Tag(name = "Shopping carts management endpoints")
 public class ShoppingCartController {
     private final ShoppingCartService shoppingCartService;
 
-    @PreAuthorize("hasAuthority('user')")
     @GetMapping
+    @PreAuthorize("hasAuthority('user')")
+    @Operation(summary = GET_CART_SUM, description = GET_CART_DESC)
     public ShoppingCartDto getCart(Authentication authentication) {
         return shoppingCartService.findCartByUserName(authentication.getName());
     }
 
-    @PreAuthorize("hasAuthority('user')")
     @PostMapping
+    @PreAuthorize("hasAuthority('user')")
+    @Operation(summary = POST_CART_ITEM_SUM, description = POST_CART_ITEM_DESC)
     public CartItemWithoutBookTitleDto postItem(
             Authentication authentication,
             @RequestBody CreateCartItemRequestDto requestDto) {
         return shoppingCartService.postItem(authentication.getName(), requestDto);
     }
 
-    @PreAuthorize("hasAuthority('user')")
     @PutMapping("/cart-items/{id}")
+    @PreAuthorize("hasAuthority('user')")
+    @Operation(summary = UPDATE_CART_ITEM_SUM, description = UPDATE_CART_ITEM_DESC)
     public CartItemWithoutBookTitleDto updateItem(
             @PathVariable Long id,
             Authentication authentication,
@@ -46,8 +55,9 @@ public class ShoppingCartController {
         return shoppingCartService.updateItem(authentication.getName(), id, requestDto);
     }
 
-    @PreAuthorize("hasAuthority('user')")
     @DeleteMapping("/cart-items/{id}")
+    @PreAuthorize("hasAuthority('user')")
+    @Operation(summary = DELETE_CART_ITEM_SUM, description = DELETE_CART_ITEM_DESC)
     public void deleteItem(@PathVariable Long id, Authentication authentication) {
         shoppingCartService.deleteItem(id, authentication.getName());
     }

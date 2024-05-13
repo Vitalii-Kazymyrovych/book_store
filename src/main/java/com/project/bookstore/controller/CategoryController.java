@@ -1,11 +1,15 @@
 package com.project.bookstore.controller;
 
+import com.project.bookstore.config.SwaggerConstants;
 import com.project.bookstore.dto.book.BookWithoutCategoryIdsDto;
 import com.project.bookstore.dto.category.CategoryDto;
 import com.project.bookstore.dto.category.CreateCategoryRequestDto;
 import com.project.bookstore.service.book.BookService;
 import com.project.bookstore.service.category.CategoryService;
 import java.util.List;
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -18,55 +22,65 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import static com.project.bookstore.config.SwaggerConstants.*;
+
 @RestController
 @RequestMapping("/categories")
 @RequiredArgsConstructor
+@Tag(name = "Categories management endpoints")
 public class CategoryController {
     private final CategoryService categoryService;
     private final BookService bookService;
 
-    @PreAuthorize("hasAuthority('admin')")
     @PostMapping
+    @PreAuthorize("hasAuthority('admin')")
+    @Operation(summary = SAVE_CATEGORY_SUM, description = SAVE_CATEGORY_DESC)
     public CategoryDto save(@RequestBody CreateCategoryRequestDto requestDto) {
         return categoryService.save(requestDto);
     }
 
-    @PreAuthorize("hasAuthority('admin')")
     @PostMapping("/all")
+    @PreAuthorize("hasAuthority('admin')")
+    @Operation(summary = SAVE_ALL_CATEGORIES_SUM, description = SAVE_ALL_CATEGORIES_DESC)
     public List<CategoryDto> saveAll(@RequestBody List<CreateCategoryRequestDto> requestDtos) {
         return categoryService.saveAll(requestDtos);
     }
 
-    @PreAuthorize("hasAuthority('user')")
     @GetMapping
+    @PreAuthorize("hasAuthority('user')")
+    @Operation(summary = FIND_ALL_CATEGORIES_SUM, description = FIND_ALL_CATEGORIES_DESC)
     public List<CategoryDto> findAll(Pageable pageable) {
         return categoryService.findAll(pageable);
     }
 
-    @PreAuthorize("hasAuthority('user')")
     @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('user')")
+    @Operation(summary = FIND_CATEGORY_BY_ID_SUM, description = FIND_CATEGORY_BY_ID_DESC)
     public CategoryDto findById(@PathVariable Long id) {
         return categoryService.findById(id);
     }
 
-    @PreAuthorize("hasAuthority('admin')")
     @PutMapping("/{id}")
+    @PreAuthorize("hasAuthority('admin')")
+    @Operation(summary = UPDATE_CATEGORY_BY_ID_SUM, description = UPDATE_CATEGORY_BY_ID_DESC)
     public CategoryDto updateById(
             @PathVariable Long id,
             @RequestBody CreateCategoryRequestDto requestDto) {
         return categoryService.update(id, requestDto);
     }
 
-    @PreAuthorize("hasAuthority('user')")
     @GetMapping("/{id}/books")
+    @PreAuthorize("hasAuthority('user')")
+    @Operation(summary = FIND_ALL_BOOKS_BY_CATEGORY_ID_SUM, description = FIND_ALL_BOOKS_BY_CATEGORY_ID_DESC)
     public List<BookWithoutCategoryIdsDto> findAllBooksByCategoryId(
             @PathVariable Long id,
             Pageable pageable) {
         return bookService.findAllByCategoryId(id, pageable);
     }
 
-    @PreAuthorize("hasAuthority('admin')")
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('admin')")
+    @Operation(summary = DELETE_CATEGORY_BY_ID_SUM, description = DELETE_CATEGORY_BY_ID_DESC)
     public void deleteById(@PathVariable Long id) {
         categoryService.deleteById(id);
     }

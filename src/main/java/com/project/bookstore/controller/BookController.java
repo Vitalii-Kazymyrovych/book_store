@@ -1,5 +1,6 @@
 package com.project.bookstore.controller;
 
+import com.project.bookstore.config.SwaggerConstants;
 import com.project.bookstore.dto.book.BookDto;
 import com.project.bookstore.dto.book.BookSearchParameters;
 import com.project.bookstore.dto.book.CreateBookRequestDto;
@@ -21,68 +22,67 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@Tag(name = "Book manager",
-        description = "Endpoints for managing books")
+@Tag(name = "Books management endpoints")
 @RequiredArgsConstructor
 @RestController
 @RequestMapping(value = "/books")
 public class BookController {
     private final BookService bookService;
 
-    @PreAuthorize("hasAuthority('user')")
     @GetMapping
-    @Operation(summary = "Find all books",
-            description = "Get list of available books")
+    @PreAuthorize("hasAuthority('user')")
+    @Operation(summary = SwaggerConstants.FIND_ALL_BOOKS_SUM,
+            description = SwaggerConstants.FIND_ALL_BOOKS_DESC)
     public List<BookDto> findAll(Pageable pageable) {
         return bookService.findAll(pageable);
     }
 
-    @PreAuthorize("hasAuthority('user')")
     @GetMapping("/search")
-    @Operation(summary = "Search books by certain parameters",
-            description = "Get list of books found by title, author, price or isbn")
+    @PreAuthorize("hasAuthority('user')")
+    @Operation(summary = SwaggerConstants.SEARCH_BOOKS_SUM,
+            description = SwaggerConstants.SEARCH_BOOKS_DESC)
     public List<BookDto> search(BookSearchParameters searchParameters, Pageable pageable) {
         return bookService.search(searchParameters, pageable);
     }
 
-    @PreAuthorize("hasAuthority('user')")
     @GetMapping("/{id}")
-    @Operation(summary = "Find book by id",
-            description = "Find book by id")
+    @PreAuthorize("hasAuthority('user')")
+    @Operation(summary = SwaggerConstants.FIND_BOOK_BY_ID_SUM,
+            description = SwaggerConstants.FIND_BOOK_BY_ID_DESC)
     public BookDto findById(@PathVariable Long id) {
         return bookService.findById(id);
     }
 
-    @PreAuthorize("hasAuthority('admin')")
     @PostMapping
-    @Operation(summary = "Save new book to database",
-            description = "Save new book to database")
+    @PreAuthorize("hasAuthority('admin')")
+    @Operation(summary = SwaggerConstants.SAVE_BOOK_SUM,
+            description = SwaggerConstants.SAVE_BOOK_DESC)
     public BookDto save(@RequestBody @Valid CreateBookRequestDto requestDto) {
         return bookService.save(requestDto);
     }
 
-    @PreAuthorize("hasAuthority('admin')")
     @PostMapping("/all")
-    @Operation(summary = "Save list of books to database",
-            description = "Save list of books to database")
+    @PreAuthorize("hasAuthority('admin')")
+    @Operation(summary = SwaggerConstants.SAVE_ALL_BOOKS_SUM,
+            description = SwaggerConstants.SAVE_ALL_BOOKS_DESC)
     public List<BookDto> saveAll(@RequestBody @Valid CreateBookRequestDto[] requestDtos) {
         return bookService.saveAll(requestDtos);
     }
 
-    @PreAuthorize("hasAuthority('admin')")
     @PutMapping("/{id}")
-    @Operation(summary = "Update book by id",
-            description = "Update book by id")
+    @PreAuthorize("hasAuthority('admin')")
+    @Operation(summary = SwaggerConstants.UPDATE_BOOK_BY_ID_SUM,
+            description = SwaggerConstants.UPDATE_BOOK_BY_ID_DESC)
     public BookDto updateById(
             @PathVariable Long id,
             @RequestBody @Valid CreateBookRequestDto requestDto) {
         return bookService.updateById(id, requestDto);
     }
 
-    @PreAuthorize("hasAuthority('admin')")
     @DeleteMapping("/{id}")
-    @Operation(summary = "Delete book by id",
-            description = "Delete book by id")
+    @PreAuthorize("hasAuthority('admin')")
+    @Operation(summary = SwaggerConstants.DELETE_BOOK_BY_ID_SUM,
+            description = SwaggerConstants.DELETE_BOOK_BY_ID_DESC)
     public ResponseEntity<Void> deleteById(@PathVariable Long id) {
         bookService.deleteById(id);
         return ResponseEntity.noContent().build();
