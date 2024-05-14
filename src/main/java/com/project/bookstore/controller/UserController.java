@@ -1,8 +1,13 @@
 package com.project.bookstore.controller;
 
+import static com.project.bookstore.config.SwaggerConstants.UPDATE_USER_ROLES_DESC;
+import static com.project.bookstore.config.SwaggerConstants.UPDATE_USER_ROLES_SUM;
+
 import com.project.bookstore.dto.user.UpdateUserRolesRequestDto;
 import com.project.bookstore.dto.user.UserWithRolesDto;
 import com.project.bookstore.service.user.UserService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -13,11 +18,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/users")
 @RequiredArgsConstructor
+@Tag(name = "Users management endpoints")
 public class UserController {
     private final UserService userService;
 
-    @PreAuthorize("hasAuthority('admin')")
     @PutMapping("/update-roles")
+    @PreAuthorize("hasAuthority('admin')")
+    @Operation(summary = UPDATE_USER_ROLES_SUM, description = UPDATE_USER_ROLES_DESC)
     public UserWithRolesDto updateUserRoles(@RequestBody UpdateUserRolesRequestDto requestDto) {
         return userService.updateUserRoles(requestDto);
     }
