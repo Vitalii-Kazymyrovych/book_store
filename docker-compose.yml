@@ -4,7 +4,7 @@ services:
   mysql:
     image: "mysql:latest"
     restart: unless-stopped
-    env_file: ./.env
+    env_file: .env.sample
     environment:
       MYSQL_DATABASE: $MYSQL_DATABASE
       MYSQL_USER: $MYSQL_USER
@@ -24,7 +24,7 @@ services:
     restart: on-failure
     image: bookstore
     build: .
-    env_file: ./.env
+    env_file: .env.sample
     ports:
       - $SPRING_LOCAL_PORT:$SPRING_DOCKER_PORT
       - $DEBUG_PORT:$DEBUG_PORT

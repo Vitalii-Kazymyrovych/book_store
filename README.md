@@ -27,6 +27,10 @@ The following technologies and tools were employed in the development of the Boo
 - **Testing**: Ensuring comprehensive test coverage using Junit, Mockito, Test containers and other tools.
 - **Error Handling**: Handling exceptions gracefully and providing meaningful error messages.
 
+## Database structure
+
+![relationships.real.large.png](relationships.real.large.png)
+
 ## Controller Functionalities
 
 ### Authentication (`/api/auth`)
@@ -71,7 +75,7 @@ The following technologies and tools were employed in the development of the Boo
 ### Using code editor
 1. Install Mysql server.
 2. Clone the repository to your local machine.
-3. Fill .env file in book_store directory.
+3. Rename .env.sample file in book_store directory and fill it with required data.
 4. Run `mvn clean package` command in terminal. If command doesn't run, install maven. Wait for project to build.
 5. Run project.
 6. Access the Swagger UI at `http://localhost:8080/api/swagger-ui.html` for API documentation and testing.
