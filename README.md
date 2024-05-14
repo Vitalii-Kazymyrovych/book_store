@@ -71,20 +71,7 @@ The following technologies and tools were employed in the development of the Boo
 ### Using code editor
 1. Install Mysql server.
 2. Clone the repository to your local machine.
-3. Create .env file in book_store directory and provide next data:
-
-
-   - MYSQL_USER=**YOUR MYSQL USERNAME**
-   - MYSQL_PASSWORD=**YOUR MYSQL USER PASSWORD**
-   - MYSQL_ROOT_PASSWORD=**YOUR MYSQL ROOT PASSWORD**
-   - MYSQL_DATABASE=**YOUR MYSQL DB NAME**
-   - MYSQL_LOCAL_PORT=3307
-   - MYSQL_DOCKER_PORT=3306
-   - SPRING_LOCAL_PORT=8088
-   - SPRING_DOCKER_PORT=8080
-   - DEBUG_PORT=5005
-
-
+3. Fill .env file in book_store directory.
 4. Run `mvn clean package` command in terminal. If command doesn't run, install maven. Wait for project to build.
 5. Run project.
 6. Access the Swagger UI at `http://localhost:8080/api/swagger-ui.html` for API documentation and testing.
